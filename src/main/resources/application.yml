@@ -1,0 +1,24 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: quispe-t2-api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: quispe-t2-doctores-service
+              uri: lb://quispe-t2-doctores-service
+              predicates:
+                - Path=/api/doctores/**
+            - id: quispe-t2-citas-service
+              uri: lb://quispe-t2-citas-service
+              predicates:
+                - Path=/api/citas/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      prefer-ip-address: true
