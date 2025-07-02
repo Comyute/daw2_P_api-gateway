@@ -2,20 +2,24 @@ server:
   port: 8085
 spring:
   application:
-    name: quispe-t2-api-gateway
+    name: api-gateway
   cloud:
     gateway:
       server:
         webflux:
           routes:
-            - id: quispe-t2-doctores-service
-              uri: lb://quispe-t2-doctores-service
+            - id: categoria-service
+              uri: lb://categoria-service
               predicates:
-                - Path=/api/doctores/**
-            - id: quispe-t2-citas-service
-              uri: lb://quispe-t2-citas-service
+                - Path=/api/categoria/**
+            - id: producto-service
+              uri: lb://producto-service
               predicates:
-                - Path=/api/citas/**
+                - Path=/api/producto/**
+            - id: usuario-service
+              uri: lb://usuario-service
+              predicates:
+                - Path=/api/usuario/**
 eureka:
   client:
     service-url:
